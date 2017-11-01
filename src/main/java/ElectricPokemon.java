@@ -5,7 +5,7 @@ public class ElectricPokemon extends Pokemon {
     /**
      * The value we will be setting our specialty probability to.
      */
-    final double specProb = 0.2;
+    final double specProb = 1;
     /**
      * We now have a specialty attack for the electric pokemon! Thunderbolt attack!
      */
@@ -59,7 +59,8 @@ public class ElectricPokemon extends Pokemon {
      * Implement this.
      */
     public boolean attack(final Pokemon opponent) {
-        if (!super.attack(opponent)
+        boolean status = super.attack(opponent);
+        if (!status
             && opponent.pokeType != pokeType
             && Math.random() < specProb
             && opponent.hitPoints > 0) {
@@ -67,7 +68,7 @@ public class ElectricPokemon extends Pokemon {
                                 + specialtyAttack + "!");
             return true;
         }
-        return false;
+        return status;
     }
 
 }

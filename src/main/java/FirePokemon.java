@@ -58,7 +58,8 @@ public class FirePokemon extends Pokemon {
      * Implement this.
      */
     public boolean attack(final Pokemon opponent) {
-        if (!super.attack(opponent)
+        boolean status = super.attack(opponent);
+        if (!status
             && opponent.pokeType != pokeType
             && Math.random() < specProb
             && opponent.hitPoints > 0) {
@@ -66,7 +67,7 @@ public class FirePokemon extends Pokemon {
                                 + specialtyAttack + "!");
             return true;
         }
-        return false;
+        return status;
     }
 
 }

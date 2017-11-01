@@ -103,8 +103,36 @@ public class Colosseum {
      *         <p>
      */
     public static Pokemon buildPokemon() {
-        Pokemon returnPokemon = null;
-        return returnPokemon;
+        final double pt5 = .5;
+        Scanner s = new Scanner(System.in);
+        Pokemon tempPokemon = new ElectricPokemon();
+        if (Math.random() <= pt5) {
+            tempPokemon = new FirePokemon();
+        }
+        if (Math.random() <= pt5) {
+            tempPokemon = new WaterPokemon();
+        }
+        System.out.print("Please name your Pokemon: ");
+        tempPokemon.setName(s.nextLine());
+        do {
+            System.out.print("\nEnter hitpoints (1-50): ");
+            tempPokemon.setHitPoints(Integer.parseInt(s.nextLine()));
+        }
+        while (tempPokemon.getHitPoints() < 1 || tempPokemon.getHitPoints() > MAX_HIT_POINTS);
+        System.out.print("\nSplit fifty points between attack level and defense level");
+        do {
+            System.out.print("\nEnter attack level (1-49): ");
+            tempPokemon.setAttackLevel(Integer.parseInt(s.nextLine()));
+        }
+        while (tempPokemon.getAttackLevel() < 1 || tempPokemon.getAttackLevel() >= MAX_HIT_POINTS);
+        do {
+            System.out.printf("\nEnter def lvl(1-%d): ", MAX_HIT_POINTS
+                    - tempPokemon.getAttackLevel());
+            tempPokemon.setDefenseLevel(Integer.parseInt(s.nextLine()));
+        }
+        while (tempPokemon.getDefenseLevel() < 1
+            || tempPokemon.getDefenseLevel() > MAX_HIT_POINTS - tempPokemon.getAttackLevel());
+        return tempPokemon;
     }
 
     /**
